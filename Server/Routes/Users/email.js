@@ -5,14 +5,14 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
     service: 'hotmail',
     auth: {
-        user: 'officialef@hotmail.com',
-        pass: '#####'
+        user: 'onePercent-9oss@hotmail.com',
+        pass: '9ossya3oss'
     }
 })
 
 const sendEmail = (name,email) =>{
     const mailOptions = {
-        from: 'officialef@hotmail.com',
+        from: 'onePercent-9oss@hotmail.com',
         to: `${email}`,
         subject: 'welcome to 9ossNet',
         text: `Mr/Mrs ${name}, we are pleased to have you in our platform, we want to tell you, feel free to contact us if you encounter any issue.Yours 9ossNet team.`
@@ -28,7 +28,7 @@ const sendEmail = (name,email) =>{
 };
 const sendCode = (code,email) =>{
     const mailOptions = {
-        from: 'officialef@hotmail.com',
+        from: 'onePercent-9ossf@hotmail.com',
         to: `${email}`,
         subject: 'Purchase code',
         text: `this is your purchase code: ${code}, please save it and keep it safe.`
