@@ -32,7 +32,6 @@ router.get('/success', (req, res) => {
 
 // waiting for confirmation from paypall then running the qr generator 
 router.post("/pay", async (req, res) => {
-    console.log(req.body)
     var possible = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "a", "b", "c", "d", "e", "f", "g", "h", "e", "j", "k", "m", "n", "o", "l", "y", "x", "z"]
     var newCode = '';
     // const a = await payment(req,res)

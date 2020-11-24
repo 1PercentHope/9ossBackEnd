@@ -15,7 +15,7 @@ const seats = require('./Routes/Seats/seats.js');
 const thirdp = require('./Routes/Thirdp/Thirdp.js')
 
 app.use(cors());
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit: '900kb'}))
 app.use(bodyParser.urlencoded({extended: true}));
 
 // middlwares
