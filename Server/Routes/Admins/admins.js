@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 const Auth = require('../Auth-Hash/authToken.js');
 const database = require("../../../Database/Controller/events.js");
 const jwt = require('jsonwebtoken');
-
+const cloudinary = require('./cloudinary.js')
 
 const router = express.Router();
 
@@ -204,7 +204,7 @@ router.get('/seats', async (req,res)=>{
 
 ///////// cloudinary /////////
 
-router.get('/api/images', async (req, res) => {
+router.get('/images', async (req, res) => {
     const { resources } = await cloudinary.search
         .expression('folder:dev_setups')
         .sort_by('public_id', 'desc')
@@ -214,7 +214,7 @@ router.get('/api/images', async (req, res) => {
     const publicIds = resources.map((file) => file.public_id);
     res.send(publicIds);
 });
-router.post('/api/upload', async (req, res) => {
+router.post('/upload', async (req, res) => {
     try {
         const fileStr = req.body.data;
         const uploadResponse = await cloudinary.uploader.upload(fileStr, {
