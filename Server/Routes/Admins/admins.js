@@ -214,7 +214,7 @@ router.get('/images', async (req, res) => {
     const publicIds = resources.map((file) => file.public_id);
     res.send(publicIds);
 });
-router.post('/upload', async (req, res) => {
+router.post('/events/upload', async (req, res) => {
     try {
         const fileStr = req.body.data;
         const uploadResponse = await cloudinary.uploader.upload(fileStr, {
