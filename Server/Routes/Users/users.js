@@ -130,4 +130,13 @@ router.post('/getuser',async (req,res)=>{
     res.status(200).json(informations)
 })
 
+///////////////////////////////// Update User Picture ////////////////////////////
+
+router.post('/update/image', async (res,res)=>{
+    const newImage = req.body.image;
+    const userPhone = req.body.phone;
+    const newUpdate = await db.updatePicture(newImage,userPhone)
+    res.status(200).json('image updated')
+})
+
 module.exports = router;
