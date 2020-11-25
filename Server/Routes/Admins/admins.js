@@ -7,8 +7,8 @@ const bcrypt = require('bcrypt');
 const Auth = require('../Auth-Hash/authToken.js');
 const database = require("../../../Database/Controller/events.js");
 const jwt = require('jsonwebtoken');
-
-
+// const cloudinary = require('./cloudinary.js')
+const fs = require('fs')
 const router = express.Router();
 
 ///////////////////////////////////////// access Token  /////////////////////////////////////////
@@ -33,7 +33,7 @@ const auth = (req, res, next) => {
 ///////////////////////////////////////// access Token End /////////////////////////////////////////
 
 router.get("/events", async (req, res) => {
-    await db.getAllEvents()
+ await db.getAllEvents()
     .then(data => {
         res.json(data);
     })
@@ -52,6 +52,11 @@ router.post('/events/add', async (req, res) => {
     let description = req.body.description;
     let price = req.body.price;
     let image = req.body.image;
+    console.log(image)
+    await fs.writeFile(`./assets/${ref}.txt`,JSON.stringify(image), 'utf8',(err,result)=>{
+        if (err) return console.log(err);
+        console.log('image data saved!');
+    })
     await db.addNewEvent(homeTeam, awayTeam, place, category, date, description, price,image)
         .then(data => {
             res.json(data)
@@ -202,9 +207,9 @@ router.get('/seats', async (req,res)=>{
     }
 })
 
-///////// cloudinary /////////
+/////// cloudinary /////////
 
-router.get('/api/images', async (req, res) => {
+router.get('/images', async (req, res) => {
     const { resources } = await cloudinary.search
         .expression('folder:dev_setups')
         .sort_by('public_id', 'desc')
@@ -214,7 +219,7 @@ router.get('/api/images', async (req, res) => {
     const publicIds = resources.map((file) => file.public_id);
     res.send(publicIds);
 });
-router.post('/api/upload', async (req, res) => {
+router.post('events/upload', async (req, res) => {
     try {
         const fileStr = req.body.data;
         const uploadResponse = await cloudinary.uploader.upload(fileStr, {
