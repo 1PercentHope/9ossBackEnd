@@ -58,7 +58,7 @@ const getAllCodes = () =>{
 
 const updateSeat = (number, phone) =>{
     return new Promise((resolve,reject)=>{
-        let syntax = `UPDATE seats SET availability= 'false', userid = (SELECT id from users WHERE phoneNumber = '${phone}') WHERE number ='${number}'`;
+        let syntax = `UPDATE seats SET availability= 'red', userid = (SELECT id from users WHERE phoneNumber = '${phone}') WHERE number ='${number}'`;
         db.connection.query(syntax,(err,row)=>{
             if(err){
                 reject(err)

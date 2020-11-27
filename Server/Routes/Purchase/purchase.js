@@ -32,11 +32,10 @@ router.get('/success', (req, res) => {
 
 // waiting for confirmation from paypall then running the qr generator 
 router.post("/pay", async (req, res) => {
+    console.log(req.body)
     var possible = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "a", "b", "c", "d", "e", "f", "g", "h", "e", "j", "k", "m", "n", "o", "l", "y", "x", "z"]
     var newCode = '';
     // const a = await payment(req,res)
-    // console.log(a)
-    // get all codes from database and shuffle the array of codes and compare if it exists in the database else make a qr code out of that shuffled code
     for (let i = possible.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * i)
         let temp = possible[i]
@@ -52,7 +51,7 @@ router.post("/pay", async (req, res) => {
             let date = moment().add(10, 'days').calendar();
             newCode = onePossibility
             db.addNewCode(newCode)
-            db.addPurchase(newCode, date, req.body.price, req.body.phoneNumber)
+            db.addPurchase(newCode, date, req.body.price, req.body.numberPhone)
             mail.sendCode(newCode, req.body.email)
         }
     }
@@ -120,9 +119,11 @@ const payment = (req, res) => {
 // get the purchase's history 
 
 router.post('/history', async (req, res) => {
-    const phone = req.body.numberPhone || '11111'
+    console.log(req.body)
+    const phone = req.body.numberPhone
     var counter = 0;
     const history = await db.getAllPurchases(phone)
+    console.log(history)
      await history.map(info => {
          qr.toDataURL(info.code)
          .then(src =>{

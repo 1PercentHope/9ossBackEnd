@@ -120,6 +120,21 @@ const updatePicture = (image,phone) =>{
         })
     })
 };
+
+// get intro images
+
+const getIntro = () =>{
+    return new Promise((resolve,reject)=>{
+        let syntax = `SELECT * FROM slogans`;
+        db.connection.query(syntax,(err,rows)=>{
+            if(err){
+                reject(err)
+            }else{
+                resolve(rows)
+            }
+        })
+    })
+};
  
 // exporting the methods
 
@@ -131,5 +146,6 @@ module.exports = {
     getRefreshToken,
     deleteUserToken,
     getAUser,
-    updatePicture
+    updatePicture,
+    getIntro
 };
