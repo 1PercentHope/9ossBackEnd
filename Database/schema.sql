@@ -13,7 +13,7 @@ CREATE TABLE users(
     email varchar(50),
     password varchar(220) NOT NULL,
     phoneNumber REAL NOT NULL,
-    profileImage varchar(100) NOT NULL,
+    profileImage varchar(220) NOT NULL,
     PRIMARY KEY (ID)
 );
  
@@ -121,15 +121,23 @@ CREATE TABLE messages(
     PRIMARY KEY(ID)
 );
 
+CREATE TABLE slogans(
+    id int NOT NULL AUTO_INCREMENT,
+    picture varchar(200),
+    PRIMARY KEY(ID)
+);
 
 
-INSERT INTO users(id,firstName,lastName,email,password,phoneNumber,profileImage) VALUES(1,'Elyes','Ferjani','elyes@rbk.com','$2b$10$beYHqloL2DWfegZfkBNazuzQJDHT1PX/l.y94Fa60mF4TcSR7CR1u','11111','url:image/profile.jpg');
-INSERT INTO users(id,firstName,lastName,email,password,phoneNumber,profileImage) VALUES(2,'Ali','Smaoui','ali@rbk.com','$2b$10$beYHqloL2DWfegZfkBNazuzQJDHT1PX/l.y94Fa60mF4TcSR7CR1u','22222','url:image/profile.jpg');
-INSERT INTO users(id,firstName,lastName,email,password,phoneNumber,profileImage) VALUES(3,'Omar','Chaouachi','omar@rbk.com','$2b$10$beYHqloL2DWfegZfkBNazuzQJDHT1PX/l.y94Fa60mF4TcSR7CR1u','33333','url:image/profile.jpg');
-INSERT INTO users(id,firstName,lastName,email,password,phoneNumber,profileImage) VALUES(4,'Skander','Bromdhan','skander@rbk.com','$2b$10$beYHqloL2DWfegZfkBNazuzQJDHT1PX/l.y94Fa60mF4TcSR7CR1u','44444','url:image/profile.jpg');
-INSERT INTO events(id,homeTeam,awayTeam,place,category,date,description,price,image) VALUES(1,'css','ess','sfax','championship','12/01/2020','League 1',17,'https://content.mosaiquefm.net/uploads/content/thumbnails/ca_vs_ess_ne_se_jouera_pas_a_tunis_1547894095.jpg');
-INSERT INTO events(id,homeTeam,awayTeam,place,category,date,description,price,image) VALUES(2,'css','ess','sfax','championship','12/01/2020','League 1',17,'https://content.mosaiquefm.net/uploads/content/thumbnails/ca_vs_ess_ne_se_jouera_pas_a_tunis_1547894095.jpg');
-INSERT INTO events(id,homeTeam,awayTeam,place,category,date,description,price,image) VALUES(3,'css','ess','sfax','championship','12/01/2020','Cup',17,'https://content.mosaiquefm.net/uploads/content/thumbnails/ca_vs_ess_ne_se_jouera_pas_a_tunis_1547894095.jpg');
+
+INSERT INTO users(id,firstName,lastName,email,password,phoneNumber,profileImage) VALUES(1,'Elyes','Ferjani','elyes@rbk.com','$2b$10$beYHqloL2DWfegZfkBNazuzQJDHT1PX/l.y94Fa60mF4TcSR7CR1u','11111','https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/1200px-Unknown_person.jpg');
+INSERT INTO users(id,firstName,lastName,email,password,phoneNumber,profileImage) VALUES(2,'Ali','Smaoui','ali@rbk.com','$2b$10$beYHqloL2DWfegZfkBNazuzQJDHT1PX/l.y94Fa60mF4TcSR7CR1u','22222','https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/1200px-Unknown_person.jpg');
+INSERT INTO users(id,firstName,lastName,email,password,phoneNumber,profileImage) VALUES(3,'Omar','Chaouachi','omar@rbk.com','$2b$10$beYHqloL2DWfegZfkBNazuzQJDHT1PX/l.y94Fa60mF4TcSR7CR1u','33333','https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/1200px-Unknown_person.jpg');
+INSERT INTO users(id,firstName,lastName,email,password,phoneNumber,profileImage) VALUES(4,'Skander','Bromdhan','skander@rbk.com','$2b$10$beYHqloL2DWfegZfkBNazuzQJDHT1PX/l.y94Fa60mF4TcSR7CR1u','44444','https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/1200px-Unknown_person.jpg');
+INSERT INTO events(id,homeTeam,awayTeam,place,category,date,description,price,image) VALUES(1,'ca','est','tunis','championship','05/01/2021','League 1',17,'http://res.cloudinary.com/codexmaker/image/upload/v1606472774/testing_angular_cloudinary/tgeryp8qrbblaaxob4r2.png');
+INSERT INTO events(id,homeTeam,awayTeam,place,category,date,description,price,image) VALUES(2,'ess','css','sousse','championship','05/01/2020','League 1',20,'http://res.cloudinary.com/codexmaker/image/upload/v1606472802/testing_angular_cloudinary/v9e8uaog727kizf8sqsy.png');
+INSERT INTO events(id,homeTeam,awayTeam,place,category,date,description,price,image) VALUES(3,'ust','usm','tataouine','championship','11/01/2020','Cup',19,'http://res.cloudinary.com/codexmaker/image/upload/v1606472822/testing_angular_cloudinary/oxotnto9fzlihn1mf0h4.png');
+INSERT INTO events(id,homeTeam,awayTeam,place,category,date,description,price,image) VALUES(4,'sg','usbg','gabes','championship','12/01/2020','Cup',15,'http://res.cloudinary.com/codexmaker/image/upload/v1606472870/testing_angular_cloudinary/vgaarywttfgnbadyavbj.png');
+INSERT INTO events(id,homeTeam,awayTeam,place,category,date,description,price,image) VALUES(5,'st','cshl','tunis','championship','15/01/2020','Cup',25,'http://res.cloudinary.com/codexmaker/image/upload/v1606472850/testing_angular_cloudinary/ypdsjqqqrhdt2arfyonb.png');
 INSERT INTO thirdp(id,identifier,password) VALUES(1,'00002','$2b$10$beYHqloL2DWfegZfkBNazuzQJDHT1PX/l.y94Fa60mF4TcSR7CR1u');
 INSERT INTO weekCodes(id,codes) VALUES(1,'Rbk6');
 INSERT INTO admins(id,firstName,lastName,email,password) VALUES(1,'Elyes','Ferjani','elyes@rbk.com','$2b$10$beYHqloL2DWfegZfkBNazuzQJDHT1PX/l.y94Fa60mF4TcSR7CR1u');
@@ -137,15 +145,17 @@ INSERT INTO admins(id,firstName,lastName,email,password) VALUES(2,'Omar','Chaoua
 INSERT INTO admins(id,firstName,lastName,email,password) VALUES(3,'Ali','Smaoui','ali@rbk.com','$2b$10$beYHqloL2DWfegZfkBNazuzQJDHT1PX/l.y94Fa60mF4TcSR7CR1u');
 INSERT INTO admins(id,firstName,lastName,email,password) VALUES(4,'Skander','Bromdhan','skander@rbk.com','$2b$10$beYHqloL2DWfegZfkBNazuzQJDHT1PX/l.y94Fa60mF4TcSR7CR1u');
 INSERT INTO messages(id,message) VALUES(1,'Welcome to admins platform');
-INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(1,101,'pelouse','true',null,1); 
-INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(2,102,'gradin','false',1,1); 
-INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(3,103,'pelouse','true',NULL,1); 
-INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(4,104,'pelouse','true',NULL,1); 
-INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(5,105,'pelouse','true',NULL,2); 
-INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(6,106,'gradin','true',NULL,2); 
-INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(7,107,'pelouse','false',2,2); 
-INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(8,108,'gradin','true',NULL,3); 
-INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(9,109,'pelouse','true',NULL,3); 
-INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(10,110,'pelouse','true',NULL,3); 
-INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(11,111,'gradin','true',NULL,3); 
-
+INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(1,101,'pelouse','green',null,1); 
+INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(2,102,'gradin','red',1,1); 
+INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(3,103,'pelouse','green',NULL,1); 
+INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(4,104,'pelouse','green',NULL,1); 
+INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(5,105,'pelouse','green',NULL,2); 
+INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(6,106,'gradin','green',NULL,2); 
+INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(7,107,'pelouse','red',2,2); 
+INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(8,108,'gradin','green',NULL,3); 
+INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(9,109,'pelouse','green',NULL,3); 
+INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(10,110,'pelouse','green',NULL,3); 
+INSERT INTO seats(id,number,type,availability,userid,matchid) VALUES(11,111,'gradin','green',NULL,3); 
+INSERT INTO slogans(id,picture) VALUES(1,"https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iDt6V.rPqgC0/v1/1000x-1.jpg");
+INSERT INTO slogans(id,picture) VALUES(2,"https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iDt6V.rPqgC0/v1/1000x-1.jpg");
+INSERT INTO slogans(id,picture) VALUES(3,"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCb-40Y2ODLXUfQO7cpaBNxTxoJE2cqskZ6g&usqp=CAU");

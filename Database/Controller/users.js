@@ -105,6 +105,36 @@ const getAUser = (phoneNumber) => {
         });
     });
 };
+
+// update profile image
+
+const updatePicture = (image,phone) =>{
+    return new Promise((resolve,reject)=>{
+        let syntax = `UPDATE users SET profileImage = '${image}' WHERE phoneNumber = '${phone}';`;
+        db.connection.query(syntax,(err,row)=>{
+            if(err){
+                reject(err)
+            }else{
+                resolve(row)
+            }
+        })
+    })
+};
+
+// get intro images
+
+const getIntro = () =>{
+    return new Promise((resolve,reject)=>{
+        let syntax = `SELECT * FROM slogans`;
+        db.connection.query(syntax,(err,rows)=>{
+            if(err){
+                reject(err)
+            }else{
+                resolve(rows)
+            }
+        })
+    })
+};
  
 // exporting the methods
 
@@ -115,5 +145,7 @@ module.exports = {
     addRefreshToken,
     getRefreshToken,
     deleteUserToken,
-    getAUser
+    getAUser,
+    updatePicture,
+    getIntro
 };
