@@ -31,7 +31,8 @@ const sendCode = (code,email) =>{
         from: 'onePercent-9ossf@hotmail.com',
         to: `${email}`,
         subject: 'Purchase code',
-        text: `this is your purchase code: ${code}, please save it and keep it safe.`
+        text: `this is your purchase code: ${code}, please save it and keep it safe.`,
+        html: `<h1>Whaaaaat? </h1>`
     };
     
     transporter.sendMail(mailOptions,(err,info)=>{

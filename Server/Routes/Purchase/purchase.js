@@ -48,7 +48,7 @@ router.post("/pay", async (req, res) => {
         if (codeList.includes(onePossibility)) {
             return generateCode()
         } else {
-            let date = moment().add(10, 'days').calendar();
+            let date = moment().add(0, 'days').calendar();
             newCode = onePossibility
             db.addNewCode(newCode)
             db.addPurchase(newCode, date, req.body.price, req.body.numberPhone)
