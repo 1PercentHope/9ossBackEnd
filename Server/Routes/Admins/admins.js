@@ -53,10 +53,10 @@ router.post('/events/add', async (req, res) => {
     let price = req.body.price;
     let image = req.body.image;
     console.log(image)
-    await fs.writeFile(`./assets/${ref}.txt`,JSON.stringify(image), 'utf8',(err,result)=>{
-        if (err) return console.log(err);
-        console.log('image data saved!');
-    })
+    // await fs.writeFile(`./assets/${ref}.txt`,JSON.stringify(image), 'utf8',(err,result)=>{
+    //     if (err) return console.log(err);
+    //     console.log('image data saved!');
+    // })
     await db.addNewEvent(homeTeam, awayTeam, place, category, date, description, price,image)
         .then(data => {
             res.json(data)
