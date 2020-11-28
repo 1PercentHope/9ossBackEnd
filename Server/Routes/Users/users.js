@@ -2,6 +2,7 @@ const process = require('../../secrets.js')
 const express = require("express");
 const db = require("../../../Database/Controller/users.js");
 const router = express.Router();
+const {auth} = require('../Auth-Hash/authToken.js');
 const Auth = require('../Auth-Hash/authToken.js');
 const Joi = require('joi');
 const { genSalt } = require('../Auth-Hash/salt.js');
@@ -27,6 +28,7 @@ const schema = Joi.object().keys({
 ////////////////////////////////////////// Sign Up //////////////////////////////////////////
 
 router.post("/signup", async (req, res) => {
+    console.log(req.body)
     // check if user informations exists
     const phoneExists = await db.getOneUser(req.body.phoneNumber);
     if (phoneExists.length > 0) return res.json({ message: "User already exists" });
@@ -53,6 +55,7 @@ router.post("/signup", async (req, res) => {
 });
 
 router.post("/verify", async (req, res) => {
+    console.log(req.body)
     const nexmo = new Nexmo({
         apiKey: process.apiKey,
         apiSecret: process.apiSecret,
@@ -72,7 +75,6 @@ router.post("/verify", async (req, res) => {
 
 
 router.post('/signin', async (req, res) => {
-    console.log(req.body)
     const phone = req.body.numberPhone;
     try {
         // const { error } = await loginschema.validateAsync(req.body);
@@ -143,5 +145,20 @@ router.post('/api/upload', async (req, res) => {
         res.status(500).json({ err: 'Something went wrong' });
     }
 });
+
+///////////////////////////////// Update User Picture ////////////////////////////
+
+router.post('/update/image', async (req,res)=>{
+    const newImage = req.body.image;
+    console.log(req.body)
+    const userPhone = req.body.phone;
+    const newUpdate = await db.updatePicture(newImage,userPhone)
+    res.status(200).json('image updated')
+})
+
+router.get('/intro',async (req,res)=>{
+    const images = await db.getIntro()
+    res.status(200).json(images)
+})
 
 module.exports = router;
