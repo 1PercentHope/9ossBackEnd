@@ -34,6 +34,7 @@ const deleteAllSeats = () => {
 };
 
 const addNewEvent = (
+  
   homeTeam,
   awayTeam,
   place,
