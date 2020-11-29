@@ -1,0 +1,151 @@
+const db = require('../Configuration/index.js');
+
+
+// adding a new user
+
+const addUser = (info) => {
+    return new Promise((resolve, reject) => {
+        let syntax = `INSERT INTO users(firstName,lastName,email,password,phoneNumber,profileImage) VALUES('${info.firstName}','${info.lastName}','${info.email}','${info.password}','${info.phoneNumber}','${info.profileImage}');`
+        db.connection.query(syntax, (err, row) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(row)
+            }
+        });
+    });
+};
+
+// getting a user by informations
+
+const getOneUser = (phoneNumber) => {
+    return new Promise((resolve, reject) => {
+        let syntax = `SELECT firstName from users WHERE phoneNumber = ${phoneNumber} ;`;
+        db.connection.query(syntax, (err, row) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(row)
+            }
+        });
+    });
+};
+
+// check a registred User informations
+
+const checkUser = (phoneNumber) => {
+    return new Promise((resolve, reject) => {
+        let syntax = `SELECT * from users WHERE phoneNumber = '${phoneNumber}';`;
+        db.connection.query(syntax, (err, row) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(row)
+            }
+        });
+    });
+};
+
+// add a refresh token to user
+
+const addRefreshToken = (token,phoneNumber) => {
+    return new Promise((resolve, reject) => {
+        let syntax = `INSERT INTO tokens(token,id_user) VALUES('${token}',(SELECT id FROM users WHERE phoneNumber = '${phoneNumber}'));`;
+        db.connection.query(syntax, (err, row) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(row)
+            }
+        })
+    })
+};
+
+// get a user refresh token
+
+const getRefreshToken = (token) => {
+    return new Promise((resolve, reject) => {
+        let syntax = `SELECT * FROM tokens WHERE token = '${token}';`;
+        db.connection.query(syntax, (err, row) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(row)
+            }
+        })
+    })
+};
+
+// delete a user refresh token
+
+const deleteUserToken = (token) => {
+    return new Promise((resolve, reject) => {
+        let syntax = `DELETE FROM tokens`;
+        db.connection.query(syntax, (err, row) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(row)
+            }
+        })
+    })
+};
+
+// getting a user by phoe
+
+const getAUser = (phoneNumber) => {
+    return new Promise((resolve, reject) => {
+        let syntax = `SELECT * from users WHERE phoneNumber = ${phoneNumber} ;`;
+        db.connection.query(syntax, (err, row) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(row)
+            }
+        });
+    });
+};
+
+// update profile image
+
+const updatePicture = (image,phone) =>{
+    return new Promise((resolve,reject)=>{
+        let syntax = `UPDATE users SET profileImage = '${image}' WHERE phoneNumber = '${phone}';`;
+        db.connection.query(syntax,(err,row)=>{
+            if(err){
+                reject(err)
+            }else{
+                resolve(row)
+            }
+        })
+    })
+};
+
+// get intro images
+
+const getIntro = () =>{
+    return new Promise((resolve,reject)=>{
+        let syntax = `SELECT * FROM slogans`;
+        db.connection.query(syntax,(err,rows)=>{
+            if(err){
+                reject(err)
+            }else{
+                resolve(rows)
+            }
+        })
+    })
+};
+ 
+// exporting the methods
+
+module.exports = {
+    addUser,
+    getOneUser,
+    checkUser,
+    addRefreshToken,
+    getRefreshToken,
+    deleteUserToken,
+    getAUser,
+    updatePicture,
+    getIntro
+};
