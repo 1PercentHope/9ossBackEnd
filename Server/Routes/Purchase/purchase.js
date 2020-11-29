@@ -52,7 +52,7 @@ router.post("/pay", async (req, res) => {
             newCode = onePossibility
             db.addNewCode(newCode)
             db.addPurchase(newCode, date, req.body.price, req.body.numberPhone)
-            mail.sendCode(newCode, req.body.email)
+            // mail.sendCode(newCode, req.body.email)
         }
     }
     generateCode()
