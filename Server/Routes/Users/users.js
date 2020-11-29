@@ -11,7 +11,7 @@ const mail = require('./email.js');
 const { jwt } = require('twilio');
 const bcrypt = require('bcrypt');
 const Nexmo = require('nexmo');
-
+const { cloudinary } = require('../../utils/cloudinary');
 
 ////////////////////////////////////// joi schema //////////////////////////////////////////
 
@@ -131,6 +131,20 @@ router.post('/getuser',async (req,res)=>{
    const informations = await db.getAUser(req.body.phone);
     res.status(200).json(informations)
 })
+//upload image
+router.post('/api/upload', async (req, res) => {
+    try {
+        const fileStr = req.body.data;
+        const uploadResponse = await cloudinary.uploader.upload(fileStr, {
+            upload_preset: '9ossnet',
+        });
+        console.log(uploadResponse);
+        res.json({ msg: 'yaya' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ err: 'Something went wrong' });
+    }
+});
 
 ///////////////////////////////// Update User Picture ////////////////////////////
 

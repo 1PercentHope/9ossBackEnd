@@ -13,6 +13,21 @@ const getAllSeats = function () {
     });
 };
 
+
+//get seats by match id
+
+const getSeatsById = function (matchId,type) {
+    return new Promise((resolve, reject) => {
+        db.connection.query(`SELECT * FROM  seats WHERE matchid = '${matchId}' AND type = '${type}'`, (error, results) => {
+            if (error) {
+                reject(error);
+            }
+                resolve(results);
+        });
+    });
+};
+
+
 //update seat by aviability
 const updateSeatAvailability = (av) => {
     let syntax = `UPDATE seats
@@ -35,5 +50,6 @@ const updateSeatAvailability = (av) => {
 
 module.exports = {
     getAllSeats,
-    updateSeatAvailability
+    updateSeatAvailability,
+    getSeatsById
 };
