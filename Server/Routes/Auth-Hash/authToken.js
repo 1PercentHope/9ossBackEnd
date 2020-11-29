@@ -24,19 +24,13 @@ const Secret = require('../../secrets.js')
 
 const auth = (req, res, next) => {
     try{
-        console.log(req.headers.authorized)
-        const token = req.headers.authorized;
+        const token = req.headers.authorized.split('.')[0]
         if(token){
-            // const Tooken = token.split('')[1];
             const Token = Secret.ACCESS_TOKEN_SECRET;
-            // const result = jwt.verify(Tooken, token);
-            if(Token === token){
-                            req.user = result;
+            const ver = accessToken(req.body.phone, Token ).split('.')[0]
+            if(token === ver){
                 next()
             }
-
-        }else{
-            res.send('No Token')
         }
     }catch(err){
         res.send(err)

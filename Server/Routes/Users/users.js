@@ -28,7 +28,6 @@ const schema = Joi.object().keys({
 ////////////////////////////////////////// Sign Up //////////////////////////////////////////
 
 router.post("/signup", async (req, res) => {
-    console.log(req.body)
     // check if user informations exists
     const phoneExists = await db.getOneUser(req.body.phoneNumber);
     if (phoneExists.length > 0) return res.json({ message: "User already exists" });
@@ -127,9 +126,9 @@ router.delete('/signout', (req, res) => {
 
 ///////////////////////////////////// Log Out And Delete Token End  ////////////////////////////////
 
-router.post('/getuser',async (req,res)=>{
+router.post('/getuser',auth,async (req,res)=>{
    const informations = await db.getAUser(req.body.phone);
-    res.status(200).json(informations)
+   await res.status(200).json(informations)
 })
 //upload image
 router.post('/api/upload', async (req, res) => {
