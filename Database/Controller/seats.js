@@ -18,7 +18,7 @@ const getAllSeats = function () {
 
 const getSeatsById = function (matchId,type) {
     return new Promise((resolve, reject) => {
-        db.connection.query(`SELECT * FROM  seats WHERE id = '${matchId}' AND type = '${type}'`, (error, results) => {
+        db.connection.query(`SELECT * FROM  seats WHERE matchid = '${matchId}' AND type = '${type}'`, (error, results) => {
             if (error) {
                 reject(error);
             }
