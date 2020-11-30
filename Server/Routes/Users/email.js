@@ -32,7 +32,7 @@ const sendCode = (code,email) =>{
         to: `${email}`,
         subject: 'Purchase code',
         text: `this is your purchase code: ${code}, please save it and keep it safe.`,
-        html: `<h1>Whaaaaat? </h1>`
+        html: `<h1> </h1>`
     };
     
     transporter.sendMail(mailOptions,(err,info)=>{
