@@ -5,6 +5,7 @@ const qr = require("qrcode");
 const paypal = require('paypal-rest-sdk')
 const moment = require('moment')
 const mail = require('../Users/email.js');
+const {auth} = require('../Auth-Hash/authToken.js');
 
 
 // here the verification of paypal will happen
